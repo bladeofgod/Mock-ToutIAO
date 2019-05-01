@@ -1,16 +1,11 @@
-# flutter_copy_tou_tiao
 
-A new Flutter application.
+API使用的是网友能爬取的部分，所以无法做到头条的所有功能。
 
-## Getting Started
+Flutter 由于hot reload的原因，debug版本会有卡顿，release版本才是流畅的。
 
-This project is a starting point for a Flutter application.
+会持续更新...
 
-A few resources to get you started if this is your first Flutter project:
+![image](https://github.com/bladeofgod/Mock-ToutIAO/blob/master/1.jpg)
+![image](https://github.com/bladeofgod/Mock-ToutIAO/blob/master/2.jpg)
+![image](https://github.com/bladeofgod/Mock-ToutIAO/blob/master/3.jpg)
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
