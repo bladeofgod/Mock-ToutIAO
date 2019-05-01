@@ -24,7 +24,9 @@ class ChannelPage extends StatefulWidget{
 
   String channelCode = "\"\"";
 
-  ChannelPage({@required this.channelCode});
+  bool isVideoPage = false;
+
+  ChannelPage({@required this.channelCode ,this.isVideoPage});
 
 
   @override
@@ -141,7 +143,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
       child: ListView.builder(
         itemCount: newsList.length,
         itemBuilder: (context,index){
-          if(widget.channelCode == '"video"'){
+          if(widget.channelCode == '"video"' || widget.isVideoPage){
             print("channel code ${widget.channelCode}");
             //视频page
             return buildVideoItem(newsList[index],index);

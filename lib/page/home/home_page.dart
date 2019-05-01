@@ -121,7 +121,7 @@ class HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin,S
   parsePages(){
     List<ChannelPage> pages = List();
     _selectChannels.forEach((key,code){
-      var page = ChannelPage(channelCode: code,);
+      var page = ChannelPage(channelCode: code,isVideoPage: false,);
       pages.add(page);
     });
     return pages;

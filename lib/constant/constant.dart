@@ -54,6 +54,29 @@ class Constant{
 
     return channel;
   }
+
+  /*
+  * 获取视频 频道
+  * */
+
+  static Map<String,String> getVideoChannel(){
+    Map<String,String> channel = Map();
+    channel["\"推荐\""] = '\"video\"';
+    channel["\"音乐\""] = '\"subv_voice\"';
+    channel["\"搞笑\""] = '\"subv_funny\"';
+    channel["\"社会\""] = '\"subv_society\"';
+    channel["\"小品\""] = '\"subv_comedy\"';
+    channel["\"生活\""] = '\"subv_life\"';
+    channel["\"影视\""] = '\"subv_movie\"';
+    channel["\"娱乐\""] = '\"subv_entertainment\"';
+    channel["\"呆萌\""] = '\"subv_cute\"';
+    channel["\"游戏\""] = '\"subv_game\"';
+    channel["\"原创\""] = '\"subv_boutique\"';
+    channel["\"开眼\""] = '\"subv_broaden_view\"';
+
+
+    return channel;
+  }
 }
 
 
