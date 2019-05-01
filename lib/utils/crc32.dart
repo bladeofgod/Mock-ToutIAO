@@ -5,7 +5,7 @@ class CRC32{
   int crc;
   String mx;
 
-  CRC32({mx}){
+  CRC32({this.mx}){
     crc = 0x00000000;
     _getCrc();
   }
@@ -23,14 +23,17 @@ class CRC32{
   }
 
   void _getCrc(){
+
     mx.codeUnits.forEach((item){
+      print("code unites ${item}");
       _crc(item);
     });
   }
   String getCRCString(){
     print(crc);
-    print("16 禁止 ${crc.toRadixString(16)}");
+    print("16 进制 ${crc.toRadixString(16)}");
     return crc.toRadixString(16);
+
   }
 
 }

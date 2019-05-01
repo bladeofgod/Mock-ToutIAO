@@ -35,9 +35,6 @@ class MainPageState extends State<MainPage> {
     // TODO: implement build
     return WillPopScope(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('今日头条'),
-        ),
         body: PageView(
           physics: NeverScrollableScrollPhysics(),
           controller: pageController,

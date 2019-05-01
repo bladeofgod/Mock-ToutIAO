@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../home/channel_page.dart';
 
 
 class VideoPage extends StatefulWidget{
@@ -15,10 +16,8 @@ class VideoPageState extends State<VideoPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Center(
-      child: Text(
-        'video page'
-      ),
+    return Container(
+      child: ChannelPage(channelCode: '"video"'),
     );
   }
 }

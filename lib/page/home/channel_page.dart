@@ -13,6 +13,9 @@ import 'package:chewie/chewie.dart';//video player
 import 'package:video_player/video_player.dart';
 import '../../utils/crc32.dart';
 import 'dart:math';
+import '../../utils/common.dart';
+import '../web_page.dart';
+import 'package:matcher/matcher.dart';
 
 
 
@@ -161,11 +164,14 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
   void parseVideoUrl(String url){
 
     DioManager.singleton.getNormal(url).then((response){
-      print(response.data);
-      print(response.toString());
+      print("response data ${response.data}");
+      print('response string ${response.toString()}');
       if(response != null){
-        
-        String videoId = response.toString().matchAsPrefix("videoId: '(.+)'").group(0);
+
+        RegExp exp = RegExp(r"videoId: '(.+)'");
+        Iterable<Match> matches = exp.allMatches(response.toString());
+        String videoId = matches.first.group(0).replaceAll("\'", "").replaceAll(" ", "");
+
         print("video id $videoId");
         //1.将/video/urls/v/1/toutiao/mp4/{videoid}?r={Math.random()}，进行crc32加密。
         String r = getRandom();
@@ -178,17 +184,19 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
         String url = DioManager.HOST_VIDEO + s +"&s=" + crcString;
 
         DioManager.singleton
-            .get(url,
+            .getNormal(url,
             data:{
               "Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",
               "Cookie" : "PHPSESSIID=334267171504; _ga=GA1.2.646236375.1499951727; _gid=GA1.2.951962968.1507171739; Hm_lvt_e0a6a4397bcb500e807c5228d70253c8=1507174305;Hm_lpvt_e0a6a4397bcb500e807c5228d70253c8=1507174305; _gat=1",
               "Origin" :"http://toutiao.iiilab.com"
             } ).then((result){
-              print(result.data);
-              print(result.toString());
+              print("result data : ${result.data}");
+              print("resuilt to string ${result.toString()}");
               setState(() {
                 _mapVP.forEach((key,value){
-                  value.dataSource = result.data.toString();
+                  value = VideoPlayerController.network(
+                    result.data.toString(),
+                  );
                 });
               });
 
@@ -207,11 +215,12 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
   }
 
   //视频条目
+  //视频连接加密 暂时无法获得，视频可能无法播放
   Widget buildVideoItem(News item,int index){
     print("video url : ${item.video_detail_info.parse_video_url.toString()}");
-
+    print("item url ${item.url}");
     String videoUrl = item.video_detail_info.parse_video_url;
-    parseVideoUrl(item.url);
+    //parseVideoUrl(item.url);
 //    if(videoUrl == null || videoUrl.isEmpty){
 //      videoUrl = parseVideoUrl(item.url);
 //    }
@@ -231,6 +240,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
     return GestureDetector(
       onTap: (){
         //click
+        CommonUtil.push(context, WebPage(url: item.article_url,));
       },
       child: Column(
         children: <Widget>[
@@ -399,6 +409,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
     return GestureDetector(
       onTap: (){
         //goto web
+        CommonUtil.push(context, WebPage(url: item.article_url,));
       },
       child: Column(
         children: <Widget>[

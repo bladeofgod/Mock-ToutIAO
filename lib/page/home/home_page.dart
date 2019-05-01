@@ -76,22 +76,31 @@ class HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin,S
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Column(
-      children: <Widget>[
-        TabBar(
-          indicatorColor: Colors.blueAccent,
-          controller: tabController,
-          isScrollable: true,
-          tabs: parseTabs(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          '今日头条',style: TextStyle(color: Colors.white,fontSize: 24,fontWeight: FontWeight.w800,letterSpacing: 6),
         ),
-        Expanded(
-          flex: 1,
-          child: TabBarView(
+        leading: Icon(Icons.search,color: Colors.black,),
+        centerTitle: true,
+        backgroundColor: Colors.red,elevation: 0,),
+      body:  Column(
+        children: <Widget>[
+          TabBar(
+            indicatorColor: Colors.blueAccent,
             controller: tabController,
-            children: parsePages(),
+            isScrollable: true,
+            tabs: parseTabs(),
           ),
-        ),
-      ],
+          Expanded(
+            flex: 1,
+            child: TabBarView(
+              controller: tabController,
+              children: parsePages(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

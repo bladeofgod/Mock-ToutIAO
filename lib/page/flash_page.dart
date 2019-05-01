@@ -13,7 +13,6 @@ class FlashPage extends StatefulWidget{
 
 class FlashPageState extends State<FlashPage> {
 
-
   @override
   void initState() {
     // TODO: implement initState
@@ -32,7 +31,7 @@ class FlashPageState extends State<FlashPage> {
         alignment: Alignment.bottomCenter,
         child: Container(
           width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.only(bottom: 60,left:40,right: 40 ),
+          margin: EdgeInsets.only(bottom: 60,left:200,right: 200 ),
           child: Image.asset('assets/splash_banner.png',fit: BoxFit.fitWidth,),
         )
       ),
